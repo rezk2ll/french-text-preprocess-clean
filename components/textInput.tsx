@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import { clean } from '../lib/clean';
 
 export default function TextInput() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const handleClean = () => {
     const cleaned = clean(value);
     setValue(cleaned);
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setValue(e.target.value);
-  }
+  };
+
+  const handleReset = () => {
+    setValue('');
+  };
 
   return (
     <div className='bg-gray-200 font-sans h-screen w-full flex flex-row justify-center items-center'>
@@ -28,7 +32,7 @@ export default function TextInput() {
         <div className='px-6 text-center mt-2 font-light text-sm'>
           <textarea
             value={value}
-            cols={80}
+            cols={100}
             rows={20}
             onChange={handleChange}
           ></textarea>
@@ -36,13 +40,16 @@ export default function TextInput() {
         <hr />
         <div className='flex  bg-gray-50 '>
           <div
-            className='text-center w-1/2 p-4 hover:bg-gray-100 cursor-pointer'
+            className='text-center w-1/2 p-4 hover:bg-green-100 cursor-pointer'
             onClick={handleClean}
           >
             <p>Clean</p>
           </div>
           <div className='border'></div>
-          <div className='text-center w-1/2 p-4 hover:bg-gray-100 cursor-pointer'>
+          <div
+            className='text-center w-1/2 p-4 hover:bg-red-100 cursor-pointer'
+            onClick={handleReset}
+          >
             <p> Reset</p>
           </div>
         </div>
