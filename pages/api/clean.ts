@@ -11,17 +11,12 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === 'POST') {
-    const { body } = req;
+    const { body: { text } } = req;
 
-    if (body.text) {
-      res.status(200).json({
-        message: clean(body.text)
-      });
-    } else {
-      res.status(400).json({
-        message: 'No text provided'
-      });
-    }
+    return text ?
+      res.status(200).json({ message: clean(text) }) :
+      res.status(400).json({ message: 'No text provided' });
   }
-  res.status(500).json({ message: 'Use POST' });
+
+  return res.status(500).json({ message: 'Use POST' });
 }
