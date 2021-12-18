@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+  french-text-clean:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: french-text-clean
+    ports:
+      - "8001:3000"
+
+
